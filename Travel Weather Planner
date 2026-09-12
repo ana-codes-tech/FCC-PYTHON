@@ -1,0 +1,16 @@
+distance_mi = 5
+is_raining = True
+has_bike = True
+has_car = False
+has_ride_share_app = False
+
+if not distance_mi:
+    result = False
+elif distance_mi <= 1:
+    result = not is_raining
+elif distance_mi <= 6:
+    result = has_bike and not is_raining
+else:
+    result = has_car or has_ride_share_app
+
+print(result)
