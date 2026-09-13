@@ -1,0 +1,132 @@
+test_settings = {
+    'theme': 'dark',
+    'notifications': 'enabled',
+    'volume': 'high',
+    'language': 'english'
+}
+
+
+
+
+def add_setting(settings, setting_pair):
+
+
+    # Take the tuple apart
+    # ('theme', 'dark') becomes:
+    # key = 'theme'
+    # value = 'dark'
+    key, value = setting_pair
+
+
+    # Convert both to lowercase
+    key = key.lower()
+    value = value.lower()
+
+
+    # Ask:
+    # "Does this key already exist in the dictionary?"
+    if key in settings:
+
+
+        # If yes, stop immediately and return an error
+        return f"Setting '{key}' already exists! Cannot add a new setting with this name."
+
+
+    # Put this value into this key.
+    # If the key doesn't exist, Python creates it.
+    settings[key] = value
+
+
+    # Tell the user it worked
+    return f"Setting '{key}' added with value '{value}' successfully!"
+
+
+
+
+def update_setting(settings, setting_pair):
+
+
+    # Separate the tuple into two variables
+    key, value = setting_pair
+
+
+    # Convert to lowercase
+    key = key.lower()
+    value = value.lower()
+
+
+    # Ask:
+    # "Does this key exist?"
+    if key in settings:
+
+
+        # Put the new value into the existing key.
+        # This replaces the old value.
+        settings[key] = value
+
+
+        return f"Setting '{key}' updated to '{value}' successfully!"
+
+
+    # If the key wasn't found
+    return f"Setting '{key}' does not exist! Cannot update a non-existing setting."
+
+
+
+
+def delete_setting(settings, key):
+
+
+    # Convert the key to lowercase
+    key = key.lower()
+
+
+    # Ask:
+    # "Is this key in the dictionary?"
+    if key in settings:
+
+
+        # Delete this key and its value
+        del settings[key]
+
+
+        return f"Setting '{key}' deleted successfully!"
+
+
+    # If key wasn't found
+    return "Setting not found!"
+
+
+
+
+def view_settings(settings):
+
+
+    # Ask:
+    # "Is the dictionary empty?"
+    if not settings:
+        return "No settings available."
+
+
+    # Start building the output text
+    result = "Current User Settings:\n"
+
+
+    # Loop through every key-value pair
+    for key, value in settings.items():
+
+
+        # Example:
+        # key = 'theme'
+        # value = 'dark'
+
+
+        # Add another line to result
+        # key.capitalize() changes:
+        # 'theme' -> 'Theme'
+        result += f"{key.capitalize()}: {value}\n"
+
+
+    # Return the completed text
+    return result
+
