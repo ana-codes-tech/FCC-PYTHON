@@ -1,0 +1,30 @@
+
+def hanoi_solver(n):
+    rod_a = list(range(n, 0, -1))
+    rod_b = []
+    rod_c = []
+
+    states = []
+
+    states.append(str(rod_a) + " " + str(rod_b) + " " + str(rod_c))
+
+    def move(n, source, helper, target):
+        if n == 1:
+            disk = source.pop()
+            target.append(disk)
+            states.append((str(rod_a) + " " + str(rod_b) + " " + str(rod_c)))
+            return
+             
+
+        move(n - 1, source, target, helper)
+        disk = source.pop()
+        target.append(disk)
+        states.append((str(rod_a) + " " + str(rod_b) + " " + str(rod_c)))
+
+        move(n - 1, helper, source, target)
+
+    move(n, rod_a, rod_b, rod_c)
+
+    return "\n".join(states)
+
+print(hanoi_solver(2))      
