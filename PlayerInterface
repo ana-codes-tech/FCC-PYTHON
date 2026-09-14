@@ -1,0 +1,55 @@
+from abc import ABC, abstractmethod
+import random
+
+
+class Player(ABC):
+    def __init__(self):
+        self.moves = []
+        self.position = (0,0)
+        self.path = [self.position]
+
+
+    def make_move(self):
+        move = random.choice(self.moves) #why write it this way
+        x, y = self.position
+        dx, dy = move
+        self.position = (x + dx, y + dy)
+
+
+        self.path.append(self.position)
+
+
+        return self.position
+
+
+    @abstractmethod
+    def level_up(self):  #why pass
+        pass
+
+
+class Pawn(Player):
+    def __init__(self):
+        super().__init__()
+
+
+        self.moves = [ #explain this part
+            (0,1),
+            (0,-1),
+            (-1,0),
+            (1,0)
+        ]
+
+
+    def level_up(self):
+       self.moves.extend([ #explain why add . extend
+        (-1, 1),
+        (1, 1),
+        (-1, -1),
+        (1, -1)
+       ])
+       
+           
+       
+
+
+
