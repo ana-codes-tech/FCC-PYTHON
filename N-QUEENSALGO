@@ -1,0 +1,50 @@
+
+def dfs_n_queens(n):
+    if n < 1:
+        return []
+
+
+    solutions = []
+
+
+    def dfs(current_solution):
+        if len(current_solution) == n:
+            solutions.append(current_solution.copy())
+            return
+
+
+        row = len(current_solution)
+
+
+           
+        for col in range(n):
+            safe = True
+
+
+            for prev_row, prev_col in enumerate(current_solution):
+
+
+                if col == prev_col or abs(row - prev_row) == abs(col - prev_col):
+                    safe = False
+                    break
+
+
+               
+           
+            if safe:
+                current_solution.append(col)
+                dfs(current_solution)
+                current_solution.pop()
+    dfs([])
+    return solutions
+
+
+
+
+
+
+print(dfs_n_queens(1))
+print(dfs_n_queens(2))
+print(dfs_n_queens(4))
+
+
