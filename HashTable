@@ -1,0 +1,55 @@
+class HashTable:
+    def __init__(self):
+        self.collection = {}
+
+    def hash(self, key):
+        total = 0
+
+        for char in key:
+            total += ord(char)  
+
+        return total
+
+    def add(self, key, value):
+        hashed_key = self.hash(key)
+        
+        if hashed_key not in self.collection:
+            self.collection[hashed_key] = {}
+        
+        self.collection[hashed_key][key] = value
+
+    def lookup(self, key):
+        hashed_key = self.hash(key)
+
+        if hashed_key not in self.collection:
+            return None
+
+        if key not in self.collection[hashed_key]:
+            return None
+
+        else:
+            return self.collection[hashed_key][key]
+
+    def remove(self, key):
+        hashed_key = self.hash(key) 
+
+        if hashed_key not in self.collection:
+            return
+
+        if key not in self.collection[hashed_key]:
+            return
+            
+        del self.collection[hashed_key][key]
+
+table = HashTable() #why do we write this
+
+print(table.hash("golf")) #why do 424 shows in terminal? i did not write that 
+
+table.add("gold", "sport")
+
+print(table.collection) #it shows {422: {'gold': 'sport'}} why  why 2 {{}}
+
+table.add("dear", "friend")
+table.add("read", "book")
+
+print(table.collection)  #why do we do this why print table.collection?
